@@ -18,6 +18,8 @@ if ( !$user )
 $userObject = $user->attribute( 'contentobject' );
 if ( !$userObject )
     return $Module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
+if ( !$userObject->canEdit() )
+    return $Module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
 $userSetting = eZUserSetting::fetch( $UserID );
 
 if ( $http->hasPostVariable( "UpdateSettingButton" ) )
